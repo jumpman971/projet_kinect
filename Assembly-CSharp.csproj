@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\InputController.cs" />
     <Compile Include="Assets\Script\Kinect\faast\MoveFromKeyboard.cs" />
     <Compile Include="Assets\Script\Kinect\KinectImgControllers\DisplayColor.cs" />
     <Compile Include="Assets\Script\Kinect\KinectImgControllers\DisplayDepth.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Assets\Script\Kinect\KinectWrapper\KinectSensor.cs" />
     <Compile Include="Assets\Script\Kinect\KinectWrapper\SkeletonWrapper.cs" />
     <Compile Include="Assets\Script\mvs.cs" />
+    <Compile Include="Assets\Script\SceneController.cs" />
     <Compile Include="Assets\Script\TraceData.cs" />
     <Compile Include="Assets\Script\TraceDataRot.cs" />
     <None Include="Assets\Asset\Shaders\Normal-Diffuse.shader" />
