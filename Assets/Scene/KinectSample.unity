@@ -341,6 +341,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &452169074 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100020, guid: 996f0228d03f2114bb727b5df57dce86,
+    type: 2}
+  m_PrefabInternal: {fileID: 984322890}
 --- !u!1 &558688656
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,6 +455,7 @@ GameObject:
   m_Component:
   - component: {fileID: 697715249}
   - component: {fileID: 697715248}
+  - component: {fileID: 697715250}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -481,6 +487,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &697715250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 697715247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d918febb54ce245b15a71d6f52e50c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightHand: {fileID: 452169074}
+  sensitivity: 0.01
 --- !u!1 &793513432 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100042, guid: 996f0228d03f2114bb727b5df57dce86,
