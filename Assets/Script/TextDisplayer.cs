@@ -8,11 +8,11 @@ public class TextDisplayer : MonoBehaviour {
     public float delay;
 
     private float startTime;
+    private bool clignote;
 
 	// Use this for initialization
 	void Start () {
-        delay = 1f;
-        startTime = 0f;
+        clignote = false;
 	}
 	
 	// Update is called once per frame
@@ -22,7 +22,7 @@ public class TextDisplayer : MonoBehaviour {
 
     public void changeText(string text)
     {
-        if (text.Equals(test.text))
+        /*if (text.Equals(test.text))
         {
             if (startTime == 0f)
             {
@@ -38,6 +38,20 @@ public class TextDisplayer : MonoBehaviour {
             }
 
         } else 
-            test.text = text;
+            test.text = text;*/
+
+        if (clignote && Time.time > startTime) {
+            test.color = Color.black;
+            clignote = false;
+        } else {
+            if (text.Equals(test.text)) {
+                clignote = true;
+                startTime = Time.time + delay;
+                test.color = Color.red;
+
+            } else
+                test.text = text;
+        }
+        
     }
 }

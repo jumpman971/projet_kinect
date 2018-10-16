@@ -29,11 +29,13 @@ public class Mouvement1 : MonoBehaviour {
         if (currPos.x > lastPos.x && diff >= sensitivity)
         {
             //Debug.Log("to right");
-            if (goingX == -1)
-            {
+            if (goingX == -1) {
                 //Debug.Log("left to right");
                 startTime = Time.time;
                 startPos = currPos;
+            } else {
+                if (!GetComponent<MouvementHandler>().startMovement(1))
+                    return;
             }
             goingX = 1;
         } else if (currPos.x < lastPos.x && diff >= sensitivity)
@@ -49,6 +51,8 @@ public class Mouvement1 : MonoBehaviour {
                     startTime = 0f;
                     startPos = new Vector2();
                     //Debug.Log("faux mouvement");
+                    if (!GetComponent<MouvementHandler>().endMovement(1))
+                        return;
                 }
             }
             if (Vector2.Distance(currPos, startPos) < movementSensitivity && startTime != 0)
@@ -57,6 +61,8 @@ public class Mouvement1 : MonoBehaviour {
                 startTime = 0f;
                 startPos = new Vector2();
                 //Debug.Log("finished");
+                if (!GetComponent<MouvementHandler>().endMovement(1))
+                    return;
                 GetComponent<TextDisplayer>().changeText("Mouvement 1");
             }
             goingX = -1;
