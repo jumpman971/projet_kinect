@@ -5,6 +5,7 @@ using UnityEngine;
 public class Mouvement2 : MonoBehaviour
 {
     public GameObject rightHand;
+    public float startSensitivity;
     public float sensitivity;
     public float movementSensitivity;
 
@@ -13,7 +14,7 @@ public class Mouvement2 : MonoBehaviour
     private int goingX = 0;
     private float startTime;
     private Vector2 startPos;
-
+    
     // Use this for initialization
     void Start()
     {
@@ -28,6 +29,13 @@ public class Mouvement2 : MonoBehaviour
         float diff = Mathf.Abs(currPos.x - lastPos.x);
 
         //Debug.Log(currPos + " - " + lastPos);
+        MouvementHandler mh = GetComponent<MouvementHandler>();
+
+        if (mh.isAMovementInProgress() && !mh.isMyMovementInProgress(2))
+        {
+            Debug.Log("stopped move 2");
+            return;
+        }
 
         if (currPos.x > lastPos.x && diff >= sensitivity)
         {
@@ -35,15 +43,13 @@ public class Mouvement2 : MonoBehaviour
             if (goingX == -1)
             {
                 //Debug.Log("left to right");
-                
                 if (Vector2.Distance(currPos, startPos) < movementSensitivity)
                 {
                     goingX = 0;
                     startTime = 0f;
                     startPos = new Vector2();
-                    //Debug.Log("faux mouvement");
-                    if (!GetComponent<MouvementHandler>().endMovement(2))
-                        return;
+                    Debug.Log("faux mouvement 2");
+                    mh.endMovement(2);
                 }
             }
             if (Vector2.Distance(currPos, startPos) < movementSensitivity && startTime != 0)
@@ -51,24 +57,27 @@ public class Mouvement2 : MonoBehaviour
                 goingX = 0;
                 startTime = 0f;
                 startPos = new Vector2();
-                //Debug.Log("finished");
+                Debug.Log("finished move 2");
                 GetComponent<TextDisplayer>().changeText("Mouvement 2");
-                if (!GetComponent<MouvementHandler>().endMovement(2))
-                    return;
+                mh.endMovement(2);
             }
             goingX = 1;
         } else if (currPos.x < lastPos.x && diff >= sensitivity)
         {
             //Debug.Log("to left");
-            if (goingX == 1)
+            if (goingX == 1 || goingX == 0)
             {
                 //Debug.Log("right to left");
                 //Debug.Log(Vector2.Distance(currPos, startPos));
-                startTime = Time.time;
+                //startTime = Time.time;
                 startPos = currPos;
-            } else {
-                if (!GetComponent<MouvementHandler>().startMovement(2))
-                    return;
+                //mh.startMovement(2);
+            }
+            if (goingX == -1 && Vector2.Distance(startPos, currPos) > startSensitivity)
+            {
+                //started = true;
+                startTime = Time.time;
+                mh.startMovement(2);
             }
             goingX = -1;
         }

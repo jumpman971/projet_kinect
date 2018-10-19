@@ -598,6 +598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightHand: {fileID: 452169074}
+  startSensitivity: 1
   sensitivity: 0.01
   movementSensitivity: 0.1
 --- !u!114 &697715251
@@ -625,6 +626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightHand: {fileID: 452169074}
+  startSensitivity: 1
   sensitivity: 0.01
   movementSensitivity: 0.1
 --- !u!114 &697715253
@@ -667,6 +669,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: accd375301d647a4eb8b30245a74bb93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activateMouvementHandler: 1
+  timeout: 5
+  movementInProgress: 0
 --- !u!1 &793513432 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100042, guid: 996f0228d03f2114bb727b5df57dce86,

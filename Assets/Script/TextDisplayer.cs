@@ -17,41 +17,22 @@ public class TextDisplayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        if (clignote && Time.time > startTime)
+        {
+            test.color = Color.black;
+            clignote = false;
+        }
+    }
 
     public void changeText(string text)
     {
-        /*if (text.Equals(test.text))
+        if (text.Equals(test.text))
         {
-            if (startTime == 0f)
-            {
-                Debug.Log("1");
-                startTime = Time.time;
-                test.color = Color.red;
-            }
-            if (startTime+delay >= Time.time)
-            {
-                Debug.Log("2");
-                test.color = Color.black;
-                startTime = 0f;
-            }
+            clignote = true;
+            startTime = Time.time + delay;
+            test.color = Color.red;
 
-        } else 
-            test.text = text;*/
-
-        if (clignote && Time.time > startTime) {
-            test.color = Color.black;
-            clignote = false;
-        } else {
-            if (text.Equals(test.text)) {
-                clignote = true;
-                startTime = Time.time + delay;
-                test.color = Color.red;
-
-            } else
-                test.text = text;
-        }
-        
+        } else
+            test.text = text;        
     }
 }

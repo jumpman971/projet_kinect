@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Mouvement1 : MonoBehaviour {
     public GameObject rightHand;
+    public float startSensitivity;
     public float sensitivity;
     public float movementSensitivity;
 
@@ -12,10 +13,12 @@ public class Mouvement1 : MonoBehaviour {
     private int goingX = 0;
     private float startTime;
     private Vector2 startPos;
+    private bool started;
 
     // Use this for initialization
     void Start () {
         lastPos = rightHand.transform.position;
+        started = false;
 	}
 	
 	// Update is called once per frame
@@ -26,16 +29,27 @@ public class Mouvement1 : MonoBehaviour {
 
         //Debug.Log(currPos + " - " + lastPos);
 
+        MouvementHandler mh = GetComponent<MouvementHandler>();
+
+        if (mh.isAMovementInProgress() && !mh.isMyMovementInProgress(1))
+        {
+            Debug.Log("stopped move 1");
+            return;
+        }
+
         if (currPos.x > lastPos.x && diff >= sensitivity)
         {
             //Debug.Log("to right");
-            if (goingX == -1) {
+            if (goingX == -1 || goingX == 0)
+            {
                 //Debug.Log("left to right");
-                startTime = Time.time;
                 startPos = currPos;
-            } else {
-                if (!GetComponent<MouvementHandler>().startMovement(1))
-                    return;
+            }
+            if (goingX == 1 && Vector2.Distance(startPos, currPos) > startSensitivity)
+            {
+                started = true;
+                startTime = Time.time;
+                mh.startMovement(1);
             }
             goingX = 1;
         } else if (currPos.x < lastPos.x && diff >= sensitivity)
@@ -50,9 +64,9 @@ public class Mouvement1 : MonoBehaviour {
                     goingX = 0;
                     startTime = 0f;
                     startPos = new Vector2();
-                    //Debug.Log("faux mouvement");
-                    if (!GetComponent<MouvementHandler>().endMovement(1))
-                        return;
+                    started = false;
+                    Debug.Log("faux mouvement 1");
+                    mh.endMovement(1);
                 }
             }
             if (Vector2.Distance(currPos, startPos) < movementSensitivity && startTime != 0)
@@ -60,9 +74,9 @@ public class Mouvement1 : MonoBehaviour {
                 goingX = 0;
                 startTime = 0f;
                 startPos = new Vector2();
-                //Debug.Log("finished");
-                if (!GetComponent<MouvementHandler>().endMovement(1))
-                    return;
+                started = false;
+                Debug.Log("finished move 1");
+                mh.endMovement(1);
                 GetComponent<TextDisplayer>().changeText("Mouvement 1");
             }
             goingX = -1;
