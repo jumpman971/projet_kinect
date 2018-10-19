@@ -18,12 +18,14 @@ public class Mouvement4 : MonoBehaviour
     void Start()
     {
         lastPos = rightHand.transform.position;
+        //lastPos = new Vector3(0, 0, rightHand.transform.position.z);
     }
 
     // Update is called once per frame
     void Update()
     {
         currPos = rightHand.transform.position;
+        //currPos = new Vector3(0, 0, rightHand.transform.position.z);
 
         float diff = Mathf.Abs(currPos.z - lastPos.z);
 
@@ -31,7 +33,7 @@ public class Mouvement4 : MonoBehaviour
 
         if (currPos.z > lastPos.z && diff >= sensitivity) {
             //Debug.Log("to right");
-            if (goingZ == -1) {
+            if (goingZ == -1 || goingZ == 0) {
                 //Debug.Log("left to right");
                 startTime = Time.time;
                 startPos = currPos;
@@ -42,17 +44,17 @@ public class Mouvement4 : MonoBehaviour
             if (goingZ == 1) {
                 //Debug.Log("right to left");
                 //Debug.Log(Vector2.Distance(currPos, startPos));
-                if (Vector2.Distance(currPos, startPos) < movementSensitivity) {
+                if (Vector3.Distance(currPos, startPos) < movementSensitivity) {
                     goingZ = 0;
                     startTime = 0f;
-                    startPos = new Vector2();
+                    startPos = new Vector3();
                     //Debug.Log("faux mouvement");
                 }
             }
-            if (Vector2.Distance(currPos, startPos) < movementSensitivity && startTime != 0) {
+            if (Vector3.Distance(currPos, startPos) < movementSensitivity && startTime != 0) {
                 goingZ = 0;
                 startTime = 0f;
-                startPos = new Vector2();
+                startPos = new Vector3();
                 //Debug.Log("finished");
                 GetComponent<TextDisplayer>().changeText("Mouvement 4");
             }

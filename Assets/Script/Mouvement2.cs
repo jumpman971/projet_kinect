@@ -17,12 +17,14 @@ public class Mouvement2 : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //lastPos = new Vector2(rightHand.transform.position.x, 0);
         lastPos = rightHand.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //currPos = new Vector2(rightHand.transform.position.x, 0);
         currPos = rightHand.transform.position;
 
         float diff = Mathf.Abs(currPos.x - lastPos.x);
@@ -41,9 +43,7 @@ public class Mouvement2 : MonoBehaviour
                     goingX = 0;
                     startTime = 0f;
                     startPos = new Vector2();
-                    //Debug.Log("faux mouvement");
-                    if (!GetComponent<MouvementHandler>().endMovement(2))
-                        return;
+                    //Debug.Log("faux mouvement 2");
                 }
             }
             if (Vector2.Distance(currPos, startPos) < movementSensitivity && startTime != 0)
@@ -51,10 +51,8 @@ public class Mouvement2 : MonoBehaviour
                 goingX = 0;
                 startTime = 0f;
                 startPos = new Vector2();
-                //Debug.Log("finished");
+                //Debug.Log("finished move 2");
                 GetComponent<TextDisplayer>().changeText("Mouvement 2");
-                if (!GetComponent<MouvementHandler>().endMovement(2))
-                    return;
             }
             goingX = 1;
         } else if (currPos.x < lastPos.x && diff >= sensitivity)
@@ -66,9 +64,6 @@ public class Mouvement2 : MonoBehaviour
                 //Debug.Log(Vector2.Distance(currPos, startPos));
                 startTime = Time.time;
                 startPos = currPos;
-            } else {
-                if (!GetComponent<MouvementHandler>().startMovement(2))
-                    return;
             }
             goingX = -1;
         }

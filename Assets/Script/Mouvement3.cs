@@ -26,6 +26,8 @@ public class Mouvement3 : MonoBehaviour
     {
         lastPosRight = rightHand.transform.position;
         lastPosLeft = leftHand.transform.position;
+        //lastPosRight = new Vector2(0, rightHand.transform.position.y);
+        //lastPosLeft = new Vector2(0, leftHand.transform.position.y);
     }
 
     // Update is called once per frame
@@ -33,6 +35,8 @@ public class Mouvement3 : MonoBehaviour
     {
         currPosRight = rightHand.transform.position;
         currPosLeft = leftHand.transform.position;
+        //currPosRight = new Vector2(0, rightHand.transform.position.y);
+        //currPosLeft = new Vector2(0, leftHand.transform.position.y);
 
         float diffRight = Mathf.Abs(currPosRight.y - lastPosRight.y);
         float diffLeft = Mathf.Abs(currPosLeft.y - lastPosLeft.y);
