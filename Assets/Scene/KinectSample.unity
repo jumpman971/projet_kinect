@@ -550,11 +550,13 @@ GameObject:
   - component: {fileID: 697715249}
   - component: {fileID: 697715248}
   - component: {fileID: 697715255}
-  - component: {fileID: 697715256}
+  - component: {fileID: 697715258}
   - component: {fileID: 697715250}
   - component: {fileID: 697715252}
   - component: {fileID: 697715253}
   - component: {fileID: 697715254}
+  - component: {fileID: 697715257}
+  - component: {fileID: 697715256}
   - component: {fileID: 697715251}
   m_Layer: 0
   m_Name: GameController
@@ -665,7 +667,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 697715247}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: accd375301d647a4eb8b30245a74bb93, type: 3}
   m_Name: 
@@ -681,6 +683,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 697715247}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd0d3fadacb322b4e9461e5a6dfb29b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftHand: {fileID: 1312778222}
+  rightHand: {fileID: 452169074}
+  sensitivity: 0
+  movementSensitivity: 0
+  state: 0
+  action: 0
+--- !u!114 &697715257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 697715247}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1edd32416c8713146b58d5d5ee6facdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftHand: {fileID: 1312778222}
+  rightHand: {fileID: 452169074}
+  sensitivity: 0.01
+  movementSensitivity: 0.1
+--- !u!114 &697715258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 697715247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17d82d76d1401854c826c38920d61071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -688,6 +722,7 @@ MonoBehaviour:
   rightHand: {fileID: 452169074}
   sensitivity: 0.01
   movementSensitivity: 0.1
+  minMove: 0.3
   lastPosRight: {x: 0, y: 0, z: 0}
   currPosRight: {x: 0, y: 0, z: 0}
   lastPosLeft: {x: 0, y: 0, z: 0}

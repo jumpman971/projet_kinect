@@ -1,0 +1,2 @@
+D:\Logiciel\Unity 3D Games\projet_kinect\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+D:\Logiciel\Unity 3D Games\projet_kinect\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache

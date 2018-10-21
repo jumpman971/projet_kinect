@@ -8,6 +8,7 @@ public class Mouvement : MonoBehaviour
     public GameObject rightHand;
     public float sensitivity;
     public float movementSensitivity;
+    public float minMove;
 
     public Vector3 lastPosRight;
     public Vector3 currPosRight;
@@ -77,15 +78,15 @@ public class Mouvement : MonoBehaviour
         ArrayList lastLeftPosAxes = new ArrayList();
         lastLeftPosAxes.Add(lastPosLeft.x); lastLeftPosAxes.Add(lastPosLeft.y); lastLeftPosAxes.Add(lastPosLeft.z);
 
-        for (int i = 0; i < 3; ++i)
-        {
+        for (int i = 0; i < 3; ++i) {
             float currPosAxe = (float)currLeftPosAxes[i]; float lastPosAxe = (float)lastLeftPosAxes[i];
             float diff = Mathf.Abs(currPosAxe - lastPosAxe);
 
-            if (currPosAxe > lastPosAxe && diff >= sensitivity)
+            if (currPosAxe > lastPosAxe && diff >= sensitivity) {
                 goingLeft[i] = 1;
-            else if (currPosAxe < lastPosAxe && diff >= sensitivity)
+            } else if (currPosAxe < lastPosAxe && diff >= sensitivity) {
                 goingLeft[i] = -1;
+            }
         }
 
 
