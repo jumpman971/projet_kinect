@@ -14,6 +14,7 @@ public class Mouvement1 : MonoBehaviour {
     private float startTime;
     private Vector2 startPos;
     private bool started;
+    private int moveId = 1;
 
     // Use this for initialization
     void Start () {
@@ -31,9 +32,9 @@ public class Mouvement1 : MonoBehaviour {
 
         MouvementHandler mh = GetComponent<MouvementHandler>();
 
-        if (mh.isAMovementInProgress() && !mh.isMyMovementInProgress(1))
+        if (mh.isAMovementInProgress() && !mh.isMyMovementInProgress(moveId))
         {
-            Debug.Log("stopped move 1");
+            Debug.Log("stopped move "+moveId);
             return;
         }
 
@@ -44,12 +45,8 @@ public class Mouvement1 : MonoBehaviour {
             {
                 //Debug.Log("left to right");
                 startPos = currPos;
-            }
-            if (goingX == 1 && Vector2.Distance(startPos, currPos) > startSensitivity)
-            {
-                started = true;
                 startTime = Time.time;
-                mh.startMovement(1);
+                mh.startMovement(moveId);
             }
             goingX = 1;
         } else if (currPos.x < lastPos.x && diff >= sensitivity)
@@ -65,8 +62,8 @@ public class Mouvement1 : MonoBehaviour {
                     startTime = 0f;
                     startPos = new Vector2();
                     started = false;
-                    Debug.Log("faux mouvement 1");
-                    mh.endMovement(1);
+                    //Debug.Log("faux mouvement "+moveId);
+                    mh.endMovement(moveId);
                 }
             }
             if (Vector2.Distance(currPos, startPos) < movementSensitivity && startTime != 0)
@@ -75,9 +72,9 @@ public class Mouvement1 : MonoBehaviour {
                 startTime = 0f;
                 startPos = new Vector2();
                 started = false;
-                Debug.Log("finished move 1");
-                mh.endMovement(1);
-                GetComponent<TextDisplayer>().changeText("Mouvement 1");
+                Debug.Log("finished move "+moveId);
+                mh.endMovement(moveId);
+                GetComponent<TextDisplayer>().changeText("Mouvement "+moveId);
             }
             goingX = -1;
         }

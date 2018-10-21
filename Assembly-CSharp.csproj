@@ -79,6 +79,7 @@
     <Compile Include="Assets\Script\Mouvement2.cs" />
     <Compile Include="Assets\Script\Mouvement3.cs" />
     <Compile Include="Assets\Script\Mouvement4.cs" />
+    <Compile Include="Assets\Script\Mouvement5.cs" />
     <Compile Include="Assets\Script\MouvementHandler.cs" />
     <Compile Include="Assets\Script\mvs.cs" />
     <Compile Include="Assets\Script\SceneController.cs" />

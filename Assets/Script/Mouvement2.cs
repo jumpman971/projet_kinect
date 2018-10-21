@@ -14,6 +14,7 @@ public class Mouvement2 : MonoBehaviour
     private int goingX = 0;
     private float startTime;
     private Vector2 startPos;
+    private int moveId = 2;
     
     // Use this for initialization
     void Start()
@@ -31,9 +32,9 @@ public class Mouvement2 : MonoBehaviour
         //Debug.Log(currPos + " - " + lastPos);
         MouvementHandler mh = GetComponent<MouvementHandler>();
 
-        if (mh.isAMovementInProgress() && !mh.isMyMovementInProgress(2))
+        if (mh.isAMovementInProgress() && !mh.isMyMovementInProgress(moveId))
         {
-            Debug.Log("stopped move 2");
+            Debug.Log("stopped move "+moveId);
             return;
         }
 
@@ -48,8 +49,8 @@ public class Mouvement2 : MonoBehaviour
                     goingX = 0;
                     startTime = 0f;
                     startPos = new Vector2();
-                    Debug.Log("faux mouvement 2");
-                    mh.endMovement(2);
+                    Debug.Log("faux mouvement "+moveId);
+                    mh.endMovement(moveId);
                 }
             }
             if (Vector2.Distance(currPos, startPos) < movementSensitivity && startTime != 0)
@@ -57,9 +58,9 @@ public class Mouvement2 : MonoBehaviour
                 goingX = 0;
                 startTime = 0f;
                 startPos = new Vector2();
-                Debug.Log("finished move 2");
-                GetComponent<TextDisplayer>().changeText("Mouvement 2");
-                mh.endMovement(2);
+                Debug.Log("finished move "+moveId);
+                GetComponent<TextDisplayer>().changeText("Mouvement "+moveId);
+                mh.endMovement(moveId);
             }
             goingX = 1;
         } else if (currPos.x < lastPos.x && diff >= sensitivity)
@@ -71,13 +72,9 @@ public class Mouvement2 : MonoBehaviour
                 //Debug.Log(Vector2.Distance(currPos, startPos));
                 //startTime = Time.time;
                 startPos = currPos;
-                //mh.startMovement(2);
-            }
-            if (goingX == -1 && Vector2.Distance(startPos, currPos) > startSensitivity)
-            {
+                mh.startMovement(moveId);
                 //started = true;
                 startTime = Time.time;
-                mh.startMovement(2);
             }
             goingX = -1;
         }
