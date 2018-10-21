@@ -88,51 +88,5 @@ public class Mouvement : MonoBehaviour
                 goingLeft[i] = -1;
             }
         }
-
-
-
-        //axeX
-        //updateDirection(goingRightX, currPosRight.x, lastPosRight.x, sensitivity);
-        /*float currPosAxe = currPosRight.x; float lastPosAxe = lastPosRight.x;
-        float diff = Mathf.Abs(currPosAxe - lastPosAxe);
-
-        if (currPosAxe > lastPosAxe && diff >= sensitivity)
-            goingRightX = 1;
-        else if (currPosAxe < lastPosAxe && diff >= sensitivity)
-            goingRightX = -1;
-        //axeY
-        //updateDirection(goingRightY, currPosRight.y, lastPosRight.y, sensitivity);
-        currPosAxe = currPosRight.y; lastPosAxe = lastPosRight.y;
-        diff = Mathf.Abs(currPosAxe - lastPosAxe);
-
-        if (currPosAxe > lastPosAxe && diff >= sensitivity)
-            goingRightY = 1;
-        else if (currPosAxe < lastPosAxe && diff >= sensitivity)
-            goingRightY = -1;
-        //axeZ
-        updateDirection(goingRightZ, currPosRight.z, lastPosRight.z, sensitivity);
-
-        //####LeftHands####
-        //axeX
-        updateDirection(goingLeftX, currPosLeft.x, lastPosLeft.x, sensitivity);
-        //axeY
-        updateDirection(goingLeftY, currPosLeft.y, lastPosLeft.y, sensitivity);
-        //axeZ
-        updateDirection(goingLeftZ, currPosLeft.z, lastPosLeft.z, sensitivity);*/
     }
-
-    /*void updateDirection(int goingTo, float currPosAxe, float lastPosAxe, float sensitivity)
-    {
-        float diff = Mathf.Abs(currPosAxe - lastPosAxe);
-
-        if (currPosAxe > lastPosAxe && diff >= sensitivity)
-        {
-            Debug.Log("4");
-            goingTo = 1;
-        } else if (currPosAxe < lastPosAxe && diff >= sensitivity)
-        {
-            Debug.Log("5");
-            goingTo = -1;
-        }
-    }*/
 }

@@ -73,7 +73,7 @@ public class Mouvement1 : MonoBehaviour {
                 startPos = new Vector2();
                 started = false;
                 Debug.Log("finished move "+moveId);
-                mh.endMovement(moveId);
+                mh.endMovement(moveId,true);
                 GetComponent<TextDisplayer>().changeText("Mouvement "+moveId);
             }
             goingX = -1;

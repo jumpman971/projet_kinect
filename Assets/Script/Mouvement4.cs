@@ -64,7 +64,7 @@ public class Mouvement4 : MonoBehaviour
                 startTime = 0f;
                 startPos = new Vector2();
                 //Debug.Log("finished");
-                mh.endMovement(moveId);
+                mh.endMovement(moveId, true);
                 GetComponent<TextDisplayer>().changeText("Mouvement "+ moveId);
             }
             goingZ = -1;

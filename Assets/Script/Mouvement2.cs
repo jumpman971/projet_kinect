@@ -60,7 +60,7 @@ public class Mouvement2 : MonoBehaviour
                 startPos = new Vector2();
                 Debug.Log("finished move "+moveId);
                 GetComponent<TextDisplayer>().changeText("Mouvement "+moveId);
-                mh.endMovement(moveId);
+                mh.endMovement(moveId, true);
             }
             goingX = 1;
         } else if (currPos.x < lastPos.x && diff >= sensitivity)

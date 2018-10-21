@@ -85,7 +85,7 @@ public class Mouvement3 : MonoBehaviour
 
                 startTime = 0f;
                 //Debug.Log("finished");
-                mh.endMovement(moveId);
+                mh.endMovement(moveId, true);
                 GetComponent<TextDisplayer>().changeText("Mouvement "+moveId);
             }
             goingYRight = -1;

@@ -9,8 +9,12 @@ public class MouvementHandler : MonoBehaviour {
     public int movementInProgress;
     private float nextTimeout;
 
-	// Use this for initialization
-	void Start () {
+    private int lastMovementId = 0;
+    private float getMovementTimeOut = 1;
+    private float startTimeNewMovement;
+
+    // Use this for initialization
+    void Start () {
         movementInProgress = 0;
 	}
 	
@@ -18,47 +22,6 @@ public class MouvementHandler : MonoBehaviour {
 	void Update () {
         if (Time.time > nextTimeout)
             movementInProgress = 0;
-
-        //mouvement1
-        /*int moveId = 1;
-        if (isAMovementInProgress() && !isMyMovementInProgress(moveId))
-        {
-            Debug.Log("stopped move " + moveId);
-            return;
-        }
-        
-        if (goingX == -1 || goingX == 0)
-        {
-            //Debug.Log("left to right");
-            startPos = currPos;
-            startTime = Time.time;
-            startMovement(moveId);
-        }
-        if (goingX == 1)
-        {
-        //Debug.Log("right to left");
-        //Debug.Log(Vector2.Distance(currPos, startPos));
-        if (Vector2.Distance(currPos, startPos) < movementSensitivity
-        {
-            goingX = 0;
-            startTime = 0f;
-                    startPos = new Vector2();
-                    started = false;
-                    //Debug.Log("faux mouvement "+moveId);
-                    mh.endMovement(moveId);
-                }
-            }
-            if (Vector2.Distance(currPos, startPos) < movementSensitivity && startTime != 0)
-            {
-                goingX = 0;
-                startTime = 0f;
-                startPos = new Vector2();
-                started = false;
-                Debug.Log("finished move " + moveId);
-                mh.endMovement(moveId);
-                GetComponent<TextDisplayer>().changeText("Mouvement " + moveId);
-            }*/
-
     }
 
     public bool startMovement(int movementIndex)
@@ -101,6 +64,20 @@ public class MouvementHandler : MonoBehaviour {
         return false;
     }
 
+    public bool endMovement(int movementIndex, bool success)
+    {
+        if (!activateMouvementHandler)
+            return false;
+
+        if (movementInProgress == movementIndex) {
+            movementInProgress = 0;
+            setLastMovement(movementIndex);
+            return true;
+        }
+
+        return false;
+    }
+
     public bool endMovement(int movementIndex)
     {
         if (!activateMouvementHandler)
@@ -112,5 +89,18 @@ public class MouvementHandler : MonoBehaviour {
         }
 
         return false;
+    }
+
+    public bool GetMouvement(int movementId)
+    {
+        if (lastMovementId == movementId && startTimeNewMovement + getMovementTimeOut > Time.time)
+            return true;
+        return false;
+    }
+
+    private void setLastMovement(int movementId)
+    {
+        lastMovementId = movementId;
+        startTimeNewMovement = Time.time;
     }
 }

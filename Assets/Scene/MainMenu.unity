@@ -409,8 +409,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 53, y: -21.81}
-  m_SizeDelta: {x: 412.28, y: 137.63}
+  m_AnchoredPosition: {x: 53, y: -34.75}
+  m_SizeDelta: {x: 430.07, y: 163.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &246588060
 MonoBehaviour:
@@ -444,8 +444,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Gestes Reconnu:\n- balayage \xBB de la main droite vers la droite puis
-    retour \xE0 l\u2019origine"
+  m_Text: "Gestes Reconnu:\n- Balayage \xBB de la main droite vers la droite puis
+    retour \xE0 l\u2019origine\n- Balayage \xBB de la main droite vers la gauche puis
+    retour \xE0 l\u2019origine\n- Balayage \xBB des 2 mains en m\xEAme temps vers
+    le haut puis retour\n- Coup du poing droit vers l'avant\n- Simuler la course avec
+    les bras\n- Balayage \xBB de la main droite vers le bas puis retour \xE0 l\u2019origine
+    (Revient au menu principal en mode \"D\xE9tection Libre\")"
 --- !u!222 &246588061
 CanvasRenderer:
   m_ObjectHideFlags: 0
