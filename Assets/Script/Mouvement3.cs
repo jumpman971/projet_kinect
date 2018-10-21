@@ -18,6 +18,7 @@ public class Mouvement3 : MonoBehaviour
     private Vector3 currPosLeft;
     private int goingYLeft = 0;
     private Vector2 startPosLeft;
+    private int moveId = 3;
 
     private float startTime;
 
@@ -41,6 +42,14 @@ public class Mouvement3 : MonoBehaviour
         float diffRight = Mathf.Abs(currPosRight.y - lastPosRight.y);
         float diffLeft = Mathf.Abs(currPosLeft.y - lastPosLeft.y);
 
+        MouvementHandler mh = GetComponent<MouvementHandler>();
+
+        if (mh.isAMovementInProgress() && !mh.isMyMovementInProgress(moveId))
+        {
+            Debug.Log("stopped move "+moveId);
+            return;
+        }
+
         //Debug.Log(currPos + " - " + lastPos);
 
         if (currPosRight.y > lastPosRight.y && diffRight >= sensitivity && currPosLeft.y > lastPosLeft.y && diffLeft >= sensitivity) {
@@ -50,6 +59,7 @@ public class Mouvement3 : MonoBehaviour
                 startTime = Time.time;
                 startPosRight = currPosRight;
                 startPosLeft = currPosLeft;
+                mh.startMovement(moveId);
             }
             goingYRight = 1;
             goingYLeft = 1;
@@ -66,6 +76,7 @@ public class Mouvement3 : MonoBehaviour
                     startPosLeft = new Vector2();
 
                     startTime = 0f;
+                    mh.endMovement(moveId);
                     //Debug.Log("faux mouvement");
                 }
             }
@@ -78,7 +89,8 @@ public class Mouvement3 : MonoBehaviour
 
                 startTime = 0f;
                 //Debug.Log("finished");
-                GetComponent<TextDisplayer>().changeText("Mouvement 3");
+                mh.endMovement(moveId, true);
+                GetComponent<TextDisplayer>().changeText("Mouvement "+moveId);
             }
             goingYRight = -1;
             goingYLeft = -1;

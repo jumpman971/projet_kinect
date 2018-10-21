@@ -3,23 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TextDisplayer : MonoBehaviour
-{
+public class TextDisplayer : MonoBehaviour {
     public Text test;
     public float delay;
 
     private float startTime;
     private bool clignote;
 
-    // Use this for initialization
-    void Start()
-    {
+	// Use this for initialization
+	void Start () {
         clignote = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+	}
+	
+	// Update is called once per frame
+	void Update () {
         if (clignote && Time.time > startTime)
         {
             test.color = Color.black;
@@ -35,8 +32,7 @@ public class TextDisplayer : MonoBehaviour
             startTime = Time.time + delay;
             test.color = Color.red;
 
-
         } else
-            test.text = text;
+            test.text = text;        
     }
 }
