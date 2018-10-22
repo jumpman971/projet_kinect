@@ -76,12 +76,17 @@
     <Compile Include="Assets\Script\Kinect\KinectWrapper\SkeletonWrapper.cs" />
     <Compile Include="Assets\Script\Mouvement.cs" />
     <Compile Include="Assets\Script\Mouvement1.cs" />
+    <Compile Include="Assets\Script\Mouvement1bis.cs" />
     <Compile Include="Assets\Script\Mouvement2.cs" />
+    <Compile Include="Assets\Script\Mouvement2bis.cs" />
     <Compile Include="Assets\Script\Mouvement3.cs" />
+    <Compile Include="Assets\Script\Mouvement3bis.cs" />
     <Compile Include="Assets\Script\Mouvement4.cs" />
+    <Compile Include="Assets\Script\Mouvement4bis.cs" />
     <Compile Include="Assets\Script\Mouvement5.cs" />
     <Compile Include="Assets\Script\Mouvement5bis.cs" />
     <Compile Include="Assets\Script\Mouvement6.cs" />
+    <Compile Include="Assets\Script\Mouvement6bis.cs" />
     <Compile Include="Assets\Script\MouvementHandler.cs" />
     <Compile Include="Assets\Script\mvs.cs" />
     <Compile Include="Assets\Script\SceneController.cs" />

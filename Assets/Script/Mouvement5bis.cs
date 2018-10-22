@@ -34,12 +34,13 @@ public class Mouvement5bis : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*MouvementHandler mh = GetComponent<MouvementHandler>();
-
+        MouvementHandler mh = GetComponent<MouvementHandler>();
+        
         if (mh.isAMovementInProgress() && !mh.isMyMovementInProgress(moveId)) {
             Debug.Log("stopped move " + moveId);
             return;
-        }*/
+        } else if (state != 0 && !mh.isMyMovementInProgress(moveId))
+            state = 0;
 
         Mouvement m = GetComponent<Mouvement>();
         int goingRightY = m.goingRight[Mouvement.AXE_Y];
@@ -51,27 +52,55 @@ public class Mouvement5bis : MonoBehaviour
                 startPosRight = m.currPosRight;
                 startPosLeft = m.currPosLeft;
                 startTime = Time.time;
+
+                if (mh.startMovement(moveId))
+                    return;
+                action = true;
             }
         } else if (state == 1) {
+            if (action) {
+                mh.startTimeoutCountdown();
+                action = false;
+            }
             if ( (goingRightY == 1 && goingLeftY == 0) || (goingRightY == 1 && goingLeftY == -1) && Vector2.Distance(m.currPosRight, startPosRight) > m.minMove) {
                 state = 2;
-               //action = true;
+               action = true;
             } else if ( ((goingRightY == 0 && goingLeftY == 1) || (goingRightY == -1 && goingLeftY == 1)) && Vector2.Distance(m.currPosLeft, startPosLeft) > m.minMove) {
                 state = 3;
-                //action = true;
+                action = true;
             }
         } else if (state == 2) {
-            if (goingRightY == -1 && goingLeftY == 1 && Vector2.Distance(m.currPosLeft, startPosLeft) > m.minMove)
+            if (action) {
+                mh.startTimeoutCountdown();
+                action = false;
+            }
+            if (goingRightY == -1 && goingLeftY == 1 && Vector2.Distance(m.currPosLeft, startPosLeft) > m.minMove) {
                 state = 4;
+                action = true;
+            }
         } else if (state == 3) {
-            if (goingRightY == 1 && goingLeftY == -1 && Vector2.Distance(m.currPosRight, startPosRight) > m.minMove)
+            if (action) {
+                mh.startTimeoutCountdown();
+                action = false;
+            }
+            if (goingRightY == 1 && goingLeftY == -1 && Vector2.Distance(m.currPosRight, startPosRight) > m.minMove) {
                 state = 5;
+                action = true;
+            }
         } else if (state == 4) {
+            if (action) {
+                mh.startTimeoutCountdown();
+                action = false;
+            }
             if (goingRightY == 1 && goingLeftY == -1 && Vector2.Distance(m.currPosRight, startPosRight) > m.minMove) {
                 state = 6;
                 action = true;
             }
         } else if (state == 5) {
+            if (action) {
+                mh.startTimeoutCountdown();
+                action = false;
+            }
             if (goingRightY == -1 && goingLeftY == 1 && Vector2.Distance(m.currPosLeft, startPosLeft) > m.minMove) {
                 state = 6;
                 action = true;
@@ -80,6 +109,7 @@ public class Mouvement5bis : MonoBehaviour
             if (action) {
                 GetComponent<TextDisplayer>().changeText("Mouvement " + moveId);
                 action = false;
+                mh.endMovement(moveId, true);
             } else
                 state = 0;
         }

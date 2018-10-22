@@ -28,12 +28,14 @@ public class MouvementHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Time.time > nextTimeout)
+        if (Time.time > nextTimeout) {
             movementInProgress = 0;
+        }
         if (nbSecLeft >= 0 && startTimeCountdown + countDownDelay < Time.time) {
             nbSecLeft--;
             if (nbSecLeft < 0) {
                 countdownTextObject.enabled = false;
+                activateMouvementHandler = true;
                 return;
             }
             countdownTextObject.text = countdownText + nbSecLeft + " sec";
@@ -47,7 +49,7 @@ public class MouvementHandler : MonoBehaviour {
             return false;
 
         if (movementInProgress == 0) {
-            nextTimeout = Time.time + timeout;
+            //nextTimeout = Time.time + timeout;
             movementInProgress = movementIndex;
             return true;
         }
@@ -89,6 +91,7 @@ public class MouvementHandler : MonoBehaviour {
         if (movementInProgress == movementIndex) {
             movementInProgress = 0;
             setLastMovement(movementIndex);
+            activateMouvementHandler = false;
             startDetectionCountDown(3);
             return true;
         }
@@ -108,6 +111,11 @@ public class MouvementHandler : MonoBehaviour {
         }
 
         return false;
+    }
+
+    public void startTimeoutCountdown()
+    {
+        nextTimeout = Time.time + timeout;
     }
 
     public bool GetMouvement(int movementId)
