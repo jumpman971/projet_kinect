@@ -27,11 +27,11 @@ public class MouvementHandler : MonoBehaviour {
     public float minMove;
 
     private Vector3 lastPosRight;
-    private Vector3 currPosRight;
+    public Vector3 currPosRight { get; set; }
     private Vector2 startPosRight;
 
     private Vector3 lastPosLeft;
-    private Vector3 currPosLeft;
+    public Vector3 currPosLeft { get; set; }
     private Vector2 startPosLeft;
 
     public int[] goingRight = { 0, 0, 0 };
@@ -50,14 +50,16 @@ public class MouvementHandler : MonoBehaviour {
 
         lastPosRight = rightHand.transform.position;
         lastPosLeft = leftHand.transform.position;
+        nbSecLeft = -1;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Time.time > nextTimeout) {
+        if (Time.time > nextTimeout + timeout) {
             movementInProgress = 0;
         }
         if (nbSecLeft >= 0 && startTimeCountdown + countDownDelay < Time.time) {
+            Debug.Log(3);
             nbSecLeft--;
             if (nbSecLeft < 0) {
                 countdownTextObject.enabled = false;
@@ -71,7 +73,8 @@ public class MouvementHandler : MonoBehaviour {
         currPosRight = rightHand.transform.position;
         currPosLeft = leftHand.transform.position;
 
-        updateHands();
+        if (activateMouvementHandler)
+            updateHands();
 
         lastPosRight = currPosRight;
         lastPosLeft = currPosLeft;
@@ -162,7 +165,9 @@ public class MouvementHandler : MonoBehaviour {
             movementInProgress = 0;
             setLastMovement(movementIndex);
             activateMouvementHandler = false;
+            reInitHandsMove();
             startDetectionCountDown(3);
+            Debug.Log(2);
             return true;
         }
 
@@ -176,6 +181,8 @@ public class MouvementHandler : MonoBehaviour {
 
         if (movementInProgress == movementIndex) {
             movementInProgress = 0;
+            activateMouvementHandler = false;
+            reInitHandsMove();
             startDetectionCountDown(3);
             return true;
         }
@@ -185,13 +192,22 @@ public class MouvementHandler : MonoBehaviour {
 
     public void startTimeoutCountdown()
     {
-        nextTimeout = Time.time + timeout;
+        nextTimeout = Time.time;
     }
 
     public bool GetMouvement(int movementId)
     {
         if (lastMovementId == movementId && startTimeNewMovement + getMovementTimeOut > Time.time)
             return true;
+        return false;
+    }
+
+    public bool GetMouvementTimeout()
+    {
+        if (nextTimeout + timeout < Time.time) {
+            nextTimeout = 0;
+            return true;
+        }
         return false;
     }
 
@@ -203,9 +219,16 @@ public class MouvementHandler : MonoBehaviour {
 
     public void startDetectionCountDown(int sec)
     {
+        Debug.Log(1);
         startTimeCountdown = Time.time;
         nbSecLeft = sec;
-        countdownTextObject.text = countdownText + nbSecLeft +" sec";
+        countdownTextObject.text = countdownText + nbSecLeft + " sec";
         countdownTextObject.enabled = true;
+    }
+
+    private void reInitHandsMove()
+    {
+        goingRight[AXE_X] = 0; goingRight[AXE_Y] = 0; goingRight[AXE_Z] = 0;
+        goingLeft[AXE_X] = 0; goingLeft[AXE_Y] = 0; goingLeft[AXE_Z] = 0;
     }
 }

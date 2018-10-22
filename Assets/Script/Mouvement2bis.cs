@@ -7,9 +7,7 @@ public class Mouvement2bis : MonoBehaviour
     private Vector3 lastPos;
     private Vector3 currPos;
     private int goingX = 0;
-    private float startTime;
     private Vector2 startPos;
-    private bool started;
     private int moveId = 2;
 
 
@@ -29,22 +27,22 @@ public class Mouvement2bis : MonoBehaviour
     {
         MouvementHandler mh = GetComponent<MouvementHandler>();
         
-        if (mh.isAMovementInProgress() && !mh.isMyMovementInProgress(moveId)) {
+        /*if (mh.isAMovementInProgress() && !mh.isMyMovementInProgress(moveId)) {
             Debug.Log("stopped move " + moveId);
             return;
         } else if (state != 0 && !mh.isMyMovementInProgress(moveId))
-            state = 0;
-
-        Mouvement m = GetComponent<Mouvement>();
-        int goingRightX = m.goingRight[Mouvement.AXE_X];
+            state = 0;*/
+    
+        int goingRightX = mh.goingRight[MouvementHandler.AXE_X];
 
         if (state == 0) {
-            if (!action && (goingRightX == 0 || goingRightX == 1)) {
-                state = 1;
-                startPos = m.currPosRight;
-                startTime = Time.time;
+            //if (!action && (goingRightX == 0 || goingRightX == 1)) {
+            if (!action && (goingRightX == 1)) {
                 if (mh.startMovement(moveId))
                     return;
+
+                state = 1;
+                startPos = mh.currPosRight;
                 action = true;
             }
         } else if (state == 1) {
@@ -52,19 +50,21 @@ public class Mouvement2bis : MonoBehaviour
                 mh.startTimeoutCountdown();
                 action = false;
             }
-            if (goingRightX == -1 && Vector2.Distance(m.currPosRight, startPos) > m.minMove) {
+            if (goingRightX == -1 && Vector2.Distance(mh.currPosRight, startPos) > mh.minMove) {
                 state = 2;
                 action = true;
-            }
+            } else if (mh.GetMouvementTimeout())
+                state = 0;
         } else if (state == 2) {
             if (action) {
                 mh.startTimeoutCountdown();
                 action = false;
             }
-            if (goingRightX == 1 && Vector2.Distance(m.currPosRight, startPos) < m.movementSensitivity) {
+            if (goingRightX == 1 && Vector2.Distance(mh.currPosRight, startPos) < mh.movementSensitivity) {
                 state = 3;
                 action = true;
-            }
+            } else if (mh.GetMouvementTimeout())
+                state = 0;
         } else if (state == 3) {
             if (action) {
                 GetComponent<TextDisplayer>().changeText("Mouvement " + moveId);

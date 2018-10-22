@@ -18,12 +18,11 @@ public class Mouvement3bis : MonoBehaviour
     public int state = 0;
     public bool action = false;
 
-    private float startTime;
-
     // Use this for initialization
     void Start()
     {
-
+        state = 0;
+        action = false;
     }
 
     // Update is called once per frame
@@ -31,25 +30,24 @@ public class Mouvement3bis : MonoBehaviour
     {
         MouvementHandler mh = GetComponent<MouvementHandler>();
         
-        if (mh.isAMovementInProgress() && !mh.isMyMovementInProgress(moveId)) {
+        /*if (mh.isAMovementInProgress() && !mh.isMyMovementInProgress(moveId)) {
             Debug.Log("stopped move " + moveId);
             return;
         } else if (state != 0 && !mh.isMyMovementInProgress(moveId))
-            state = 0;
-
-        Mouvement m = GetComponent<Mouvement>();
-        int goingRightY = m.goingRight[Mouvement.AXE_Y];
-        int goingLeftY = m.goingLeft[Mouvement.AXE_Y];
+            state = 0;*/
+        
+        int goingRightY = mh.goingRight[MouvementHandler.AXE_Y];
+        int goingLeftY = mh.goingLeft[MouvementHandler.AXE_Y];
 
         if (state == 0) {
-            if (!action && ((goingRightY == 0 && goingLeftY == 0) || (goingRightY == -1 && goingLeftY == -1))) {
-                state = 1;
-                startPosRight = m.currPosRight;
-                startPosLeft = m.currPosLeft;
-                startTime = Time.time;
-
+            //if (!action && ((goingRightY == 0 && goingLeftY == 0) || (goingRightY == -1 && goingLeftY == -1))) {
+            if (!action && ((goingRightY == -1 && goingLeftY == -1))) {
                 if (mh.startMovement(moveId))
                     return;
+
+                state = 1;
+                startPosRight = mh.currPosRight;
+                startPosLeft = mh.currPosLeft;
                 action = true;
             }
         } else if (state == 1) {
@@ -57,19 +55,21 @@ public class Mouvement3bis : MonoBehaviour
                 mh.startTimeoutCountdown();
                 action = false;
             }
-            if (goingRightY == 1 && goingLeftY == 1 && Vector2.Distance(m.currPosRight, startPosRight) > m.minMove && Vector2.Distance(m.currPosLeft, startPosLeft) > m.minMove) {
+            if (goingRightY == 1 && goingLeftY == 1 && Vector2.Distance(mh.currPosRight, startPosRight) > mh.minMove && Vector2.Distance(mh.currPosLeft, startPosLeft) > mh.minMove) {
                 state = 2;
                 action = true;
-            }
+            } else if (mh.GetMouvementTimeout())
+                state = 0;
         } else if (state == 2) {
             if (action) {
                 mh.startTimeoutCountdown();
                 action = false;
             }
-            if (goingRightY == -1 && goingLeftY == -1 && Vector2.Distance(m.currPosRight, startPosRight) < m.movementSensitivity && Vector2.Distance(m.currPosLeft, startPosLeft) < m.movementSensitivity) {
+            if (goingRightY == -1 && goingLeftY == -1 && Vector2.Distance(mh.currPosRight, startPosRight) < mh.movementSensitivity && Vector2.Distance(mh.currPosLeft, startPosLeft) < mh.movementSensitivity) {
                 state = 3;
                 action = true;
-            }
+            } else if (mh.GetMouvementTimeout())
+                state = 0;
         } else if (state == 3) {
             if (action) {
                 GetComponent<TextDisplayer>().changeText("Mouvement " + moveId);

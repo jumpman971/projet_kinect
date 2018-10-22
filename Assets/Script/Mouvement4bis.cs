@@ -7,9 +7,7 @@ public class Mouvement4bis : MonoBehaviour
     private Vector3 lastPos;
     private Vector3 currPos;
     private int goingX = 0;
-    private float startTime;
     private Vector2 startPos;
-    private bool started;
     private int moveId = 4;
 
 
@@ -29,23 +27,22 @@ public class Mouvement4bis : MonoBehaviour
     {
         MouvementHandler mh = GetComponent<MouvementHandler>();
         
-        if (mh.isAMovementInProgress() && !mh.isMyMovementInProgress(moveId)) {
+        /*if (mh.isAMovementInProgress() && !mh.isMyMovementInProgress(moveId)) {
             Debug.Log("stopped move " + moveId);
             return;
         } else if (state != 0 && !mh.isMyMovementInProgress(moveId))
-            state = 0;
+            state = 0;*/
 
-        Mouvement m = GetComponent<Mouvement>();
-        int goingRightZ = m.goingRight[Mouvement.AXE_Z];
+        int goingRightZ = mh.goingRight[MouvementHandler.AXE_Z];
 
         if (state == 0) {
-            if (!action && (goingRightZ == 0 || goingRightZ == -1)) {
-                state = 1;
-                startPos = m.currPosRight;
-                startTime = Time.time;
-
-                if (mh.startMovement(moveId))
+            //if (!action && (goingRightZ == 0 || goingRightZ == -1)) {
+            if (!action && goingRightZ == -1) {
+                if (!mh.startMovement(moveId))
                     return;
+
+                state = 1;
+                startPos = mh.currPosRight;
                 action = true;
             }
         } else if (state == 1) {
@@ -53,19 +50,21 @@ public class Mouvement4bis : MonoBehaviour
                 mh.startTimeoutCountdown();
                 action = false;
             }
-            if (goingRightZ == 1 && Vector2.Distance(m.currPosRight, startPos) > m.minMove) {
+            if (goingRightZ == 1 && Vector2.Distance(mh.currPosRight, startPos) > mh.minMove) {
                 state = 2;
                 action = true;
-            }
+            } else if (mh.GetMouvementTimeout())
+                state = 0;
         } else if (state == 2) {
             if (action) {
                 mh.startTimeoutCountdown();
                 action = false;
             }
-            if (goingRightZ == -1 && Vector2.Distance(m.currPosRight, startPos) < m.movementSensitivity) {
+            if (goingRightZ == -1 && Vector2.Distance(mh.currPosRight, startPos) < mh.movementSensitivity) {
                 state = 3;
                 action = true;
-            }
+            } else if (mh.GetMouvementTimeout())
+                state = 0;
         } else if (state == 3) {
             if (action) {
                 GetComponent<TextDisplayer>().changeText("Mouvement " + moveId);
@@ -74,45 +73,5 @@ public class Mouvement4bis : MonoBehaviour
             } else
                 state = 0;
         }
-
-
-
-        /*
-        if (currPos.x > lastPos.x && diff >= sensitivity) {
-            //Debug.Log("to right");
-            if (goingX == -1 || goingX == 0) {
-                //Debug.Log("left to right");
-                startPos = currPos;
-                startTime = Time.time;
-                mh.startMovement(moveId);
-            }
-            goingX = 1;
-        } else if (currPos.x < lastPos.x && diff >= sensitivity) {
-            //Debug.Log("to left");
-            if (goingX == 1) {
-                //Debug.Log("right to left");
-                //Debug.Log(Vector2.Distance(currPos, startPos));
-                if (Vector2.Distance(currPos, startPos) < movementSensitivity) {
-                    goingX = 0;
-                    startTime = 0f;
-                    startPos = new Vector2();
-                    started = false;
-                    //Debug.Log("faux mouvement "+moveId);
-                    mh.endMovement(moveId);
-                }
-            }
-            if (Vector2.Distance(currPos, startPos) < movementSensitivity && startTime != 0) {
-                goingX = 0;
-                startTime = 0f;
-                startPos = new Vector2();
-                started = false;
-                Debug.Log("finished move " + moveId);
-                mh.endMovement(moveId, true);
-                GetComponent<TextDisplayer>().changeText("Mouvement " + moveId);
-            }
-            goingX = -1;
-        }
-
-        lastPos = currPos;*/
     }
 }
