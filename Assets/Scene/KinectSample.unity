@@ -626,6 +626,13 @@ GameObject:
   - component: {fileID: 697715249}
   - component: {fileID: 697715248}
   - component: {fileID: 697715255}
+  - component: {fileID: 697715264}
+  - component: {fileID: 697715263}
+  - component: {fileID: 697715262}
+  - component: {fileID: 697715261}
+  - component: {fileID: 697715260}
+  - component: {fileID: 697715259}
+  - component: {fileID: 697715251}
   - component: {fileID: 697715258}
   - component: {fileID: 697715250}
   - component: {fileID: 697715252}
@@ -633,7 +640,6 @@ GameObject:
   - component: {fileID: 697715254}
   - component: {fileID: 697715256}
   - component: {fileID: 697715257}
-  - component: {fileID: 697715251}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -753,6 +759,13 @@ MonoBehaviour:
   countdownTextObject: {fileID: 621343223}
   movementInProgress: 0
   countDownDelay: 1
+  leftHand: {fileID: 1312778222}
+  rightHand: {fileID: 452169074}
+  sensitivity: 0.01
+  movementSensitivity: 0.1
+  minMove: 0.3
+  goingRight: 000000000000000000000000
+  goingLeft: 000000000000000000000000
 --- !u!114 &697715256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,10 +777,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0d3fadacb322b4e9461e5a6dfb29b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftHand: {fileID: 1312778222}
-  rightHand: {fileID: 452169074}
-  sensitivity: 0
-  movementSensitivity: 0
   state: 0
   action: 0
 --- !u!114 &697715257
@@ -776,7 +785,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 697715247}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2aeddebe5ff0c8419886293df7a9cb5, type: 3}
   m_Name: 
@@ -791,7 +800,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 697715247}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17d82d76d1401854c826c38920d61071, type: 3}
   m_Name: 
@@ -807,6 +816,84 @@ MonoBehaviour:
   currPosLeft: {x: 0, y: 0, z: 0}
   goingRight: 000000000000000000000000
   goingLeft: 000000000000000000000000
+--- !u!114 &697715259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 697715247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23043c3367510a940915b6e508b64a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  action: 0
+--- !u!114 &697715260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 697715247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd0d3fadacb322b4e9461e5a6dfb29b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  action: 0
+--- !u!114 &697715261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 697715247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8dfd2ee5fab6db4d9f2766466df2325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  action: 0
+--- !u!114 &697715262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 697715247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c21fbfd8c4912245b8f9364f1723f80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  action: 0
+--- !u!114 &697715263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 697715247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09b48503eb12a9a47a6ddc4bb192564f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  action: 0
+--- !u!114 &697715264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 697715247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a04022809d968914f98a652ec4d97268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  action: 0
 --- !u!1 &793513432 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100042, guid: 996f0228d03f2114bb727b5df57dce86,

@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class Mouvement2bis : MonoBehaviour
 {
-    public GameObject rightHand;
-    public float startSensitivity;
-    public float sensitivity;
-    public float movementSensitivity;
-
     private Vector3 lastPos;
     private Vector3 currPos;
     private int goingX = 0;
