@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Mouvement1bis : MonoBehaviour
 {
-    private Vector3 lastPos;
-    private Vector3 currPos;
-    private int goingX = 0;
     private Vector2 startPos;
     private int moveId = 1;
 
+    public float movementSensitivity;
+    public float minMove;
     public int state;
     public bool action;
 
@@ -35,9 +34,8 @@ public class Mouvement1bis : MonoBehaviour
 
         if (state == 0) {
             //if (!action && (goingRightX == 0 || goingRightX == -1)) {
-            if (!action && (goingRightX == -1)) {
-                if (!mh.startMovement(moveId))
-                    return;
+            if (!action && (goingRightX == 1)) {
+                
                 state = 1;
                 startPos = mh.currPosRight;
                 action = true;
@@ -47,7 +45,10 @@ public class Mouvement1bis : MonoBehaviour
                 mh.startTimeoutCountdown();
                 action = false;
             }
-            if (goingRightX == 1 && Vector2.Distance(mh.currPosRight, startPos) > mh.minMove) {
+            //Debug.Log("state1 : "+Vector2.Distance(mh.currPosRight, startPos) + " >  " + minMove);
+            if (goingRightX == 1 && Vector2.Distance(mh.currPosRight, startPos) > minMove) {
+                if (!mh.startMovement(moveId))
+                    return;
                 state = 2;
                 action = true;
             } else if (mh.GetMouvementTimeout())
@@ -57,7 +58,8 @@ public class Mouvement1bis : MonoBehaviour
                 mh.startTimeoutCountdown();
                 action = false;
             }
-            if (goingRightX == -1 && Vector2.Distance(mh.currPosRight, startPos) < mh.movementSensitivity) {
+            //Debug.Log("state2 : " + Vector2.Distance(mh.currPosRight, startPos) + " < " + movementSensitivity);
+            if (goingRightX == -1 && Vector2.Distance(mh.currPosRight, startPos) < movementSensitivity) {
                 state = 3;
                 action = true;
             } else if (mh.GetMouvementTimeout())

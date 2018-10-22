@@ -58,17 +58,21 @@ public class MouvementHandler : MonoBehaviour {
         if (Time.time > nextTimeout + timeout) {
             movementInProgress = 0;
         }
-        if (nbSecLeft >= 0 && startTimeCountdown + countDownDelay < Time.time) {
-            Debug.Log(3);
-            nbSecLeft--;
-            if (nbSecLeft < 0) {
-                countdownTextObject.enabled = false;
-                activateMouvementHandler = true;
-                return;
+        if (nbSecLeft >= 0) {
+            //Debug.Log("NbSecLeft = " + nbSecLeft);
+            if (startTimeCountdown + countDownDelay < Time.time) {
+                //Debug.Log(1);
+                nbSecLeft--;
+                if (nbSecLeft < 0) {
+                    countdownTextObject.enabled = false;
+                    activateMouvementHandler = true;
+                    return;
+                }
+                countdownTextObject.text = countdownText + nbSecLeft + " sec";
+                startTimeCountdown = Time.time;
             }
-            countdownTextObject.text = countdownText + nbSecLeft + " sec";
-            startTimeCountdown = Time.time;
-        }
+        }/* else if (!activateMouvementHandler)
+            Debug.Log("pas bon: " + nbSecLeft + " - ");*/
 
         currPosRight = rightHand.transform.position;
         currPosLeft = leftHand.transform.position;
@@ -158,20 +162,23 @@ public class MouvementHandler : MonoBehaviour {
 
     public bool endMovement(int movementIndex, bool success)
     {
-        if (!activateMouvementHandler)
+        /*if (!activateMouvementHandler) {
+            Debug.Log("no movement handler");
             return false;
+        }*/
 
-        if (movementInProgress == movementIndex) {
+        //if (movementInProgress == movementIndex) {
+            //Debug.Log("ok for now");
             movementInProgress = 0;
             setLastMovement(movementIndex);
             activateMouvementHandler = false;
             reInitHandsMove();
             startDetectionCountDown(3);
-            Debug.Log(2);
             return true;
-        }
+        /*}
 
-        return false;
+        Debug.Log("just nothing work");
+        return false;*/
     }
 
     public bool endMovement(int movementIndex)
@@ -219,7 +226,6 @@ public class MouvementHandler : MonoBehaviour {
 
     public void startDetectionCountDown(int sec)
     {
-        Debug.Log(1);
         startTimeCountdown = Time.time;
         nbSecLeft = sec;
         countdownTextObject.text = countdownText + nbSecLeft + " sec";

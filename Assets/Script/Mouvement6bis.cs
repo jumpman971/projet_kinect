@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Mouvement6bis : MonoBehaviour
 {
-    private Vector3 lastPos;
-    private Vector3 currPos;
     private Vector2 startPos;
     private int moveId = 6;
 
+    public float movementSensitivity;
+    public float minMove;
     public int state;
     public bool action;
 
@@ -37,9 +37,8 @@ public class Mouvement6bis : MonoBehaviour
 
         if (state == 0) {
             //if (!action && (goingRightY == 0 || goingRightY == 1)) {
-            if (!action && (goingRightY == 1 && goingLeftY != 1)) {
-                if (!mh.startMovement(moveId))
-                    return;
+            if (!action && (goingRightY == -1)) {
+                
 
                 state = 1;
                 startPos = mh.currPosRight;
@@ -50,7 +49,9 @@ public class Mouvement6bis : MonoBehaviour
                 mh.startTimeoutCountdown();
                 action = false;
             }
-            if (goingRightY == -1 && Vector2.Distance(mh.currPosRight, startPos) > mh.minMove) {
+            if (goingRightY == -1 && Vector2.Distance(mh.currPosRight, startPos) > minMove) {
+                if (!mh.startMovement(moveId))
+                    return;
                 state = 2;
                 action = true;
             } else if (mh.GetMouvementTimeout())
@@ -60,7 +61,7 @@ public class Mouvement6bis : MonoBehaviour
                 mh.startTimeoutCountdown();
                 action = false;
             }
-            if (goingRightY == 1 && Vector2.Distance(mh.currPosRight, startPos) < mh.movementSensitivity) {
+            if (goingRightY == 1 && Vector2.Distance(mh.currPosRight, startPos) < movementSensitivity) {
                 state = 3;
                 action = true;
             } else if (mh.GetMouvementTimeout())

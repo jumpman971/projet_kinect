@@ -711,6 +711,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23043c3367510a940915b6e508b64a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSensitivity: 0.1
+  minMove: 0.1
   state: 0
   action: 0
 --- !u!114 &697715260
@@ -737,6 +739,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8dfd2ee5fab6db4d9f2766466df2325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSensitivity: 0.05
+  minMove: 0.05
   state: 0
   action: 0
 --- !u!114 &697715262
@@ -745,11 +749,13 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 697715247}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c21fbfd8c4912245b8f9364f1723f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSensitivity: 0.1
+  minMove: 0.2
   state: 0
   action: 0
 --- !u!114 &697715263
@@ -758,11 +764,13 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 697715247}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09b48503eb12a9a47a6ddc4bb192564f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSensitivity: 0.05
+  minMove: 0.2
   state: 0
   action: 0
 --- !u!114 &697715264
@@ -771,32 +779,15 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 697715247}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a04022809d968914f98a652ec4d97268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSensitivity: 0.05
+  minMove: 0.2
   state: 0
   action: 0
---- !u!1 &793513432 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100042, guid: 996f0228d03f2114bb727b5df57dce86,
-    type: 2}
-  m_PrefabInternal: {fileID: 984322890}
---- !u!114 &793513433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 793513432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 631a5ade1c524464d8c95ec4e505fe6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rightHandKinectPos: {x: 0, y: 0, z: 0}
-  realToVirtual: {x: 0, y: 0, z: 0}
-  rightHandVirtualPos: {x: 0, y: 0, z: 0}
 --- !u!1001 &984322890
 Prefab:
   m_ObjectHideFlags: 0

@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class Mouvement3bis : MonoBehaviour
 {
-    private Vector3 lastPosRight;
-    private Vector3 currPosRight;
-    private int goingYRight = 0;
     private Vector2 startPosRight;
-
-    private Vector3 lastPosLeft;
-    private Vector3 currPosLeft;
-    private int goingYLeft = 0;
     private Vector2 startPosLeft;
     private int moveId = 3;
 
-    public int state = 0;
+    public float movementSensitivity;
+    public float minMove;
+    public int state;
     public bool action = false;
 
     // Use this for initialization
@@ -41,10 +36,8 @@ public class Mouvement3bis : MonoBehaviour
 
         if (state == 0) {
             //if (!action && ((goingRightY == 0 && goingLeftY == 0) || (goingRightY == -1 && goingLeftY == -1))) {
-            if (!action && ((goingRightY == -1 && goingLeftY == -1))) {
-                if (mh.startMovement(moveId))
-                    return;
-
+            //Debug.Log("Right Y && Left Y" + ((goingRightY == 1 && goingLeftY == 1) ? "true" : "false"));
+            if (!action && ((goingRightY == 1 && goingLeftY == 1))) {
                 state = 1;
                 startPosRight = mh.currPosRight;
                 startPosLeft = mh.currPosLeft;
@@ -55,7 +48,9 @@ public class Mouvement3bis : MonoBehaviour
                 mh.startTimeoutCountdown();
                 action = false;
             }
-            if (goingRightY == 1 && goingLeftY == 1 && Vector2.Distance(mh.currPosRight, startPosRight) > mh.minMove && Vector2.Distance(mh.currPosLeft, startPosLeft) > mh.minMove) {
+            if (goingRightY == 1 && goingLeftY == 1 && Vector2.Distance(mh.currPosRight, startPosRight) > minMove && Vector2.Distance(mh.currPosLeft, startPosLeft) > minMove) {
+                if (mh.startMovement(moveId))
+                    return;
                 state = 2;
                 action = true;
             } else if (mh.GetMouvementTimeout())
@@ -65,7 +60,8 @@ public class Mouvement3bis : MonoBehaviour
                 mh.startTimeoutCountdown();
                 action = false;
             }
-            if (goingRightY == -1 && goingLeftY == -1 && Vector2.Distance(mh.currPosRight, startPosRight) < mh.movementSensitivity && Vector2.Distance(mh.currPosLeft, startPosLeft) < mh.movementSensitivity) {
+            Debug.Log("Right = " + Vector2.Distance(mh.currPosRight, startPosRight) + " < " + movementSensitivity + " - Left = " + Vector2.Distance(mh.currPosLeft, startPosLeft) + " < " + movementSensitivity);
+            if (goingRightY == -1 && goingLeftY == -1 && Vector2.Distance(mh.currPosRight, startPosRight) < movementSensitivity && Vector2.Distance(mh.currPosLeft, startPosLeft) < movementSensitivity) {
                 state = 3;
                 action = true;
             } else if (mh.GetMouvementTimeout())
@@ -75,8 +71,9 @@ public class Mouvement3bis : MonoBehaviour
                 GetComponent<TextDisplayer>().changeText("Mouvement " + moveId);
                 action = false;
                 mh.endMovement(moveId, true);
-            } else
+            } else {
                 state = 0;
+            }
         }
     }
 }
