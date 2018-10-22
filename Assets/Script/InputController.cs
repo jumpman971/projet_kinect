@@ -16,5 +16,9 @@ public class InputController : MonoBehaviour {
         {
             SceneManager.LoadScene("MainMenu");
         }
+
+        /*if (Input.GetKeyDown(KeyCode.A)) {
+            GetComponent<MouvementHandler>().startDetectionCountDown(3);
+        }*/
 	}
 }

@@ -25,13 +25,6 @@ public class Mouvement : MonoBehaviour
     public static int AXE_Y = 1;
     public static int AXE_Z = 2;
 
-    /*public int goingRightX = 0;
-    public int goingRightY = 0;
-    public int goingRightZ = 0;
-    public int goingLeftX = 0;
-    public int goingLeftY = 0;
-    public int goingLeftZ = 0;*/
-
     private float startTime;
 
     // Use this for initialization
