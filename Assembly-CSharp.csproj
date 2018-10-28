@@ -61,34 +61,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\InputController.cs" />
-    <Compile Include="Assets\Script\Kinect\faast\MoveFromKeyboard.cs" />
-    <Compile Include="Assets\Script\Kinect\KinectImgControllers\DisplayColor.cs" />
-    <Compile Include="Assets\Script\Kinect\KinectImgControllers\DisplayDepth.cs" />
-    <Compile Include="Assets\Script\Kinect\KinectModelControllers\KinectModelControllerV2.cs" />
-    <Compile Include="Assets\Script\Kinect\KinectModelControllers\KinectPointController.cs" />
-    <Compile Include="Assets\Script\Kinect\KinectWrapper\DepthWrapper.cs" />
-    <Compile Include="Assets\Script\Kinect\KinectWrapper\DeviceOrEmulator.cs" />
-    <Compile Include="Assets\Script\Kinect\KinectWrapper\KinectEmulator.cs" />
-    <Compile Include="Assets\Script\Kinect\KinectWrapper\KinectInterop.cs" />
-    <Compile Include="Assets\Script\Kinect\KinectWrapper\KinectRecorder.cs" />
-    <Compile Include="Assets\Script\Kinect\KinectWrapper\KinectSensor.cs" />
-    <Compile Include="Assets\Script\Kinect\KinectWrapper\SkeletonWrapper.cs" />
-    <Compile Include="Assets\Script\Mouvement1.cs" />
-    <Compile Include="Assets\Script\Mouvement1bis.cs" />
-    <Compile Include="Assets\Script\Mouvement2.cs" />
-    <Compile Include="Assets\Script\Mouvement2bis.cs" />
-    <Compile Include="Assets\Script\Mouvement3.cs" />
-    <Compile Include="Assets\Script\Mouvement3bis.cs" />
-    <Compile Include="Assets\Script\Mouvement4.cs" />
-    <Compile Include="Assets\Script\Mouvement4bis.cs" />
-    <Compile Include="Assets\Script\Mouvement5.cs" />
-    <Compile Include="Assets\Script\Mouvement5bis.cs" />
-    <Compile Include="Assets\Script\Mouvement6.cs" />
-    <Compile Include="Assets\Script\Mouvement6bis.cs" />
-    <Compile Include="Assets\Script\MouvementHandler.cs" />
-    <Compile Include="Assets\Script\SceneController.cs" />
-    <Compile Include="Assets\Script\TextDisplayer.cs" />
+    <Compile Include="Assets\Scripts\InputController.cs" />
+    <Compile Include="Assets\Scripts\Kinect\faast\MoveFromKeyboard.cs" />
+    <Compile Include="Assets\Scripts\Kinect\KinectImgControllers\DisplayColor.cs" />
+    <Compile Include="Assets\Scripts\Kinect\KinectImgControllers\DisplayDepth.cs" />
+    <Compile Include="Assets\Scripts\Kinect\KinectModelControllers\KinectModelControllerV2.cs" />
+    <Compile Include="Assets\Scripts\Kinect\KinectModelControllers\KinectPointController.cs" />
+    <Compile Include="Assets\Scripts\Kinect\KinectWrapper\DepthWrapper.cs" />
+    <Compile Include="Assets\Scripts\Kinect\KinectWrapper\DeviceOrEmulator.cs" />
+    <Compile Include="Assets\Scripts\Kinect\KinectWrapper\KinectEmulator.cs" />
+    <Compile Include="Assets\Scripts\Kinect\KinectWrapper\KinectInterop.cs" />
+    <Compile Include="Assets\Scripts\Kinect\KinectWrapper\KinectRecorder.cs" />
+    <Compile Include="Assets\Scripts\Kinect\KinectWrapper\KinectSensor.cs" />
+    <Compile Include="Assets\Scripts\Kinect\KinectWrapper\SkeletonWrapper.cs" />
+    <Compile Include="Assets\Scripts\Mouvement1.cs" />
+    <Compile Include="Assets\Scripts\Mouvement2.cs" />
+    <Compile Include="Assets\Scripts\Mouvement3.cs" />
+    <Compile Include="Assets\Scripts\Mouvement4.cs" />
+    <Compile Include="Assets\Scripts\Mouvement5.cs" />
+    <Compile Include="Assets\Scripts\Mouvement6.cs" />
+    <Compile Include="Assets\Scripts\MouvementHandler.cs" />
+    <Compile Include="Assets\Scripts\SceneController.cs" />
+    <Compile Include="Assets\Scripts\TextDisplayer.cs" />
     <None Include="Assets\Asset\Shaders\Normal-Diffuse.shader" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/Logiciel/Unity 3D Games/projet_kinect/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
